@@ -1,15 +1,20 @@
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
+  color: blueviolet;
 }
 h1 {
   margin-bottom: 0.5em;
+  text-align: center;
 }
 label {
   display: inline-block;
   width: 80px;
+  font-weight: bolder;
+  color: hsl(0, 5%, 12%);
 }
-input, select {
+input,
+select {
   margin-bottom: 10px;
 }
 #transactionList {
@@ -25,4 +30,66 @@ input, select {
 }
 .expense {
   color: red;
+}
+
+input {
+  width: 70%;
+  height: 30px;
+  margin-left: 30px;
+  border: 2px solid hsla(260, 5%, 12%, 0.671);
+  border-radius: 5px;
+}
+
+input:hover,
+input:focus {
+  border: 2px solid hsla(271, 76%, 53%, 0.537);
+  border-radius: 5px;
+}
+
+button {
+  min-width: 255px;
+  min-height: 35px;
+  width: fit-content;
+  height: fit-content;
+  background-color: blueviolet;
+  color: white;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+button:nth-of-type(1) {
+  margin-left: calc(84px + 30px);
+}
+button:nth-of-type(2) {
+  margin-left: calc(18px);
+}
+#input-container {
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 600px) {
+  button:nth-of-type(2) {
+    margin-left: calc(84px + 30px);
+    margin-top: 10px;
+  }
+}
+
+h2 {
+  border-bottom: 2px solid blueviolet;
+  width: fit-content;
+  padding-bottom: 6px;
+  
+}
+
+#output-container{
+margin-top: 60px;
+}
+
+ul{
+  background-color: hsla(0, 0%, 62%, 0.15);
+  width: auto;
+  height: 100px;
+  min-height: fit-content;
+  border: 1px solid hsla(240, 1%, 32%, 0.671);
+  color: hsl(0, 5%, 12%);
 }
