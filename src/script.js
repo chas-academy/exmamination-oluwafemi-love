@@ -25,7 +25,6 @@ incomeBtn.addEventListener("click", () => {
   AddIncome();
   RenderIncome();
   RenderAllTransactions();
-  console.log(`This is invokation of TotalIncome: `, TotalIncome());
   CalculateBalance();
   ClearUI();
 });
@@ -35,8 +34,6 @@ expensesBtn.addEventListener("click", () => {
   AddExpenses();
   RenderExpenses();
   RenderAllTransactions();
-  console.log(`This is the invokation of TotalExpenses: `, TotalExpenses());
-
   CalculateBalance();
   ClearUI();
 });
@@ -55,9 +52,6 @@ function AddIncome() {
 
   income.push(transaction);
   allTransactions.push(transaction);
-
-  console.log("This is the current transaction (income): ", transaction);
-  console.log("This is income: ", income);
 }
 
 function AddExpenses() {
@@ -73,15 +67,13 @@ function AddExpenses() {
 
   expenses.push(transaction);
   allTransactions.push(transaction);
-
-  console.log("This is the current transaction (expense): ", transaction);
-  console.log("This is expenses: ", expenses);
 }
 
 //Defend
 function Defend() {
   if (!descriptionUI.value || !budgetAmountUI.value) {
     alert("You need to input the needed information");
+    return;
   }
 }
 
@@ -95,7 +87,7 @@ function RenderIncome() {
   incomeListUL.innerHTML = ""; //clear previous list to avoid rendering issues
   for (icm of income) {
     let singleLi = document.createElement("li");
-    singleLi.innerHTML = `${icm.description}:  ${icm.amount}kr`;
+    singleLi.innerHTML =  `${icm.description} - ${icm.amount} kr (Inkomst)`;
     incomeListUL.appendChild(singleLi);
   }
 }
@@ -104,7 +96,7 @@ function RenderExpenses() {
   expenseListUL.innerHTML = "";
   for (exp of expenses) {
     let singleLi = document.createElement("li");
-    singleLi.innerHTML = `${exp.description}:  ${exp.amount}kr`;
+    singleLi.innerHTML = `${exp.description} - ${exp.amount} kr (Utgift)`;
     expenseListUL.appendChild(singleLi);
   }
 }
@@ -113,7 +105,7 @@ function RenderAllTransactions() {
   transactionListUL.innerHTML = "";
   for (allt of allTransactions) {
     let singleLi = document.createElement("li");
-    singleLi.innerHTML = `${allt.description}:  ${allt.amount}kr, Type: ${allt.type}`;
+    singleLi.innerHTML = `${allt.description} -  ${allt.amount} kr (${allt.type})`;
     transactionListUL.appendChild(singleLi);
   }
 }
