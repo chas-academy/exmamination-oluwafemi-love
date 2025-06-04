@@ -19,8 +19,8 @@ select {
 }
 #transactionList {
   margin-top: 1em;
-  list-style: none;
-  padding: 0;
+  /* list-style: none; */
+  padding: 0 0 20px 20px;
 }
 #transactionList li {
   margin: 5px 0;
@@ -92,4 +92,6 @@ ul{
   min-height: fit-content;
   border: 1px solid hsla(240, 1%, 32%, 0.671);
   color: hsl(0, 5%, 12%);
+  padding: 10px 20px 20px 20px;
+  text-transform: capitalize;
 }
