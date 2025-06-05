@@ -17,7 +17,8 @@ describe("Transaction functionality", () => {
       <button id="expenseBtn"></button>
       <ul id="incomeList"></ul>
       <ul id="expenseList"></ul>
-      <div id="balance"></div>
+      <ul id="transactionList"></ul>
+      <div id="balance"></div> 
     `;
     require("./src/script.js");
   });
@@ -32,7 +33,8 @@ describe("Transaction functionality", () => {
 
     descInput.value = description;
     amountInput.value = amount;
-    incomeBtn.click();
+    incomeBtn.dispatchEvent(new Event("click"));
+
 
     expect(document.getElementById("incomeList").textContent)
       .toContain(`${description} - ${amount} kr (Inkomst)`);

@@ -19,6 +19,8 @@ let expenses = [];
 let allTransactions = [];
 
 //Action
+console.log(document.getElementById("incomeList"));
+
 incomeBtn.addEventListener("click", () => {
   if (!Defend()) return;
   AddIncome();
@@ -133,7 +135,14 @@ function CalculateBalance() {
   const incomeTotal = TotalIncome();
   const expenseTotal = TotalExpenses();
   const balance = incomeTotal - expenseTotal;
-  balanceUI.textContent = balance;
+
+  if(balanceUI){
+    balanceUI.textContent = balance;
+  }else{
+    console.warn("balanceUI is null, skipping update");
+  }
+  
+
   console.log(
     `Total Income: ${TotalIncome()}, Total Expenses: ${TotalExpenses()}, Balance: ${balance}`
   );
