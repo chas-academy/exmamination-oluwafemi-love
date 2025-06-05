@@ -84,28 +84,28 @@ function ClearUI() {
 }
 
 function RenderIncome() {
-  incomeListUL.innerHTML = ""; //clear previous list to avoid rendering issues
+  incomeListUL.textContent = ""; //clear previous list to avoid rendering issues
   for (icm of income) {
     let singleLi = document.createElement("li");
-    singleLi.innerHTML =  `${icm.description} - ${icm.amount} kr (Inkomst)`;
+    singleLi.textContent =  `${icm.description} - ${icm.amount} kr (Inkomst)`;
     incomeListUL.appendChild(singleLi);
   }
 }
 
 function RenderExpenses() {
-  expenseListUL.innerHTML = "";
+  expenseListUL.textContent = "";
   for (exp of expenses) {
     let singleLi = document.createElement("li");
-    singleLi.innerHTML = `${exp.description} - ${exp.amount} kr (Utgift)`;
+    singleLi.textContent = `${exp.description} - ${exp.amount} kr (Utgift)`;
     expenseListUL.appendChild(singleLi);
   }
 }
 
 function RenderAllTransactions() {
-  transactionListUL.innerHTML = "";
+  transactionListUL.textContent = "";
   for (allt of allTransactions) {
     let singleLi = document.createElement("li");
-    singleLi.innerHTML = `${allt.description} -  ${allt.amount} kr (${allt.type})`;
+    singleLi.textContent = `${allt.description} -  ${allt.amount} kr (${allt.type})`;
     transactionListUL.appendChild(singleLi);
   }
 }
@@ -130,7 +130,7 @@ function CalculateBalance() {
   const incomeTotal = TotalIncome();
   const expenseTotal = TotalExpenses();
   const balance = incomeTotal - expenseTotal;
-  balanceUI.innerHTML = balance;
+  balanceUI.textContent = balance;
   console.log(
     `Total Income: ${TotalIncome()}, Total Expenses: ${TotalExpenses()}, Balance: ${balance}`
   );
