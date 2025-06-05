@@ -16,12 +16,11 @@ let description;
 let amount;
 let income = [];
 let expenses = [];
-let transaction = {};
 let allTransactions = [];
 
 //Action
 incomeBtn.addEventListener("click", () => {
-  Defend();
+  if (!Defend()) return;
   AddIncome();
   RenderIncome();
   RenderAllTransactions();
@@ -30,12 +29,13 @@ incomeBtn.addEventListener("click", () => {
 });
 
 expensesBtn.addEventListener("click", () => {
-  Defend();
-  AddExpenses();
-  RenderExpenses();
-  RenderAllTransactions();
-  CalculateBalance();
-  ClearUI();
+  if (Defend()) {
+    AddExpenses();
+    RenderExpenses();
+    RenderAllTransactions();
+    CalculateBalance();
+    ClearUI();
+  }
 });
 
 //Functionalities
@@ -44,7 +44,7 @@ function AddIncome() {
   description = descriptionUI.value.trim();
   amount = Number(budgetAmountUI.value);
 
-  transaction = {
+ const transaction = {
     description: description,
     amount: amount,
     type: "income",
@@ -59,7 +59,7 @@ function AddExpenses() {
   description = descriptionUI.value.trim();
   amount = Number(budgetAmountUI.value);
 
-  transaction = {
+ const transaction = {
     description: description,
     amount: amount,
     type: "expenses",
@@ -71,10 +71,13 @@ function AddExpenses() {
 
 //Defend
 function Defend() {
-  if (!descriptionUI.value || !budgetAmountUI.value) {
-    alert("You need to input the needed information");
-    return;
+  const desc = descriptionUI.value.trim();
+  const amt = Number(budgetAmountUI.value);
+  if (!desc || !amt || amt <= 0) {
+    alert("You need to input the needed valid information");
+    return false;
   }
+  return true;
 }
 
 //Clear UI
@@ -85,16 +88,16 @@ function ClearUI() {
 
 function RenderIncome() {
   incomeListUL.textContent = ""; //clear previous list to avoid rendering issues
-  for (icm of income) {
+  for (const icm of income) {
     let singleLi = document.createElement("li");
-    singleLi.textContent =  `${icm.description} - ${icm.amount} kr (Inkomst)`;
+    singleLi.textContent = `${icm.description} - ${icm.amount} kr (Inkomst)`;
     incomeListUL.appendChild(singleLi);
   }
 }
 
 function RenderExpenses() {
   expenseListUL.textContent = "";
-  for (exp of expenses) {
+  for (const exp of expenses) {
     let singleLi = document.createElement("li");
     singleLi.textContent = `${exp.description} - ${exp.amount} kr (Utgift)`;
     expenseListUL.appendChild(singleLi);
@@ -103,7 +106,7 @@ function RenderExpenses() {
 
 function RenderAllTransactions() {
   transactionListUL.textContent = "";
-  for (allt of allTransactions) {
+  for (const allt of allTransactions) {
     let singleLi = document.createElement("li");
     singleLi.textContent = `${allt.description} -  ${allt.amount} kr (${allt.type})`;
     transactionListUL.appendChild(singleLi);
@@ -112,7 +115,7 @@ function RenderAllTransactions() {
 
 function TotalIncome() {
   let totalIncome = 0;
-  for (icm of income) {
+  for (const icm of income) {
     totalIncome += icm.amount;
   }
   return totalIncome;
@@ -120,7 +123,7 @@ function TotalIncome() {
 
 function TotalExpenses() {
   let totalExpenses = 0;
-  for (xpz of expenses) {
+  for (const xpz of expenses) {
     totalExpenses += xpz.amount;
   }
   return totalExpenses;
